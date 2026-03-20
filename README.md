@@ -7,7 +7,7 @@ Kotlin Multiplatform AI provider icons for Compose. 470+ icons from [lobe-icons]
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("io.github.anthropics.lobicons:lobicons-core:0.1.0")
+    implementation("ru.wertik.lobicons:lobicons-core:0.1.0")
 }
 ```
 
