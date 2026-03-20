@@ -29,7 +29,13 @@ jobs:
       - name: decode signing key
         env:
           SIGNING_KEY_BASE64: ${{ secrets.SIGNING_KEY }}
-        run: echo "ORG_GRADLE_PROJECT_signingInMemoryKey=$(echo "$SIGNING_KEY_BASE64" | base64 -d)" >> "$GITHUB_ENV"
+        run: |
+          EOF_MARKER=$(openssl rand -hex 16)
+          {
+            echo "ORG_GRADLE_PROJECT_signingInMemoryKey<<${EOF_MARKER}"
+            echo "$SIGNING_KEY_BASE64" | base64 -d
+            echo "${EOF_MARKER}"
+          } >> "$GITHUB_ENV"
 
       - run: ./gradlew :lobicons-core:publishAllPublicationsToMavenCentralRepository
         env:
