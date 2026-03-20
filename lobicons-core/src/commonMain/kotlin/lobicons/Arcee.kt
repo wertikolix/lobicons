@@ -1,0 +1,24 @@
+package lobicons
+
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.unit.dp
+
+private var _arcee: ImageVector? = null
+
+val Lobicons.Arcee: ImageVector
+    get() {
+        if (_arcee != null) return _arcee!!
+        _arcee = ImageVector.Builder(
+            name = "Arcee",
+            defaultWidth = 24.0.dp,
+            defaultHeight = 24.0.dp,
+            viewportWidth = 24.0f,
+            viewportHeight = 24.0f,
+        ).apply {
+            path {
+                pathData("M13.236 2.377L2.751 20.493H0L11.863 0l1.373 2.377zm3.554 6.156l-9.606 11.96H4.13L15.511 6.32l1.279 2.212zm6.908 11.96H14.05l8.406-2.151 1.242 2.15zm-3.42-5.922l-7.843 5.92H8.482l10.597-7.997 1.2 2.077z")
+            }
+        }.build()
+        return _arcee!!
+    }

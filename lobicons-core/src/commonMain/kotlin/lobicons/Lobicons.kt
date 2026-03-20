@@ -1,0 +1,3 @@
+package lobicons
+
+object Lobicons

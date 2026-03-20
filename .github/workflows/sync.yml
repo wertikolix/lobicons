@@ -1,0 +1,55 @@
+name: Sync Icons
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: lobehub/lobe-icons
+          path: lobe-icons
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python3 generator/generate.py lobe-icons
+
+      - name: check for changes
+        id: diff
+        run: |
+          if git diff --quiet lobicons-core/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: bump patch version
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          current=$(grep '^VERSION_NAME=' gradle.properties | cut -d= -f2)
+          IFS='.' read -r major minor patch <<< "$current"
+          next="$major.$minor.$((patch + 1))"
+          sed -i "s/^VERSION_NAME=.*/VERSION_NAME=$next/" gradle.properties
+          echo "version=$next" >> "$GITHUB_ENV"
+
+      - name: commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lobicons-core/ gradle.properties
+          git commit -m "sync icons from lobe-icons ($version)"
+          git push
