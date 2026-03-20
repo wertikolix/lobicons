@@ -45,11 +45,13 @@ jobs:
           sed -i "s/^VERSION_NAME=.*/VERSION_NAME=$next/" gradle.properties
           echo "version=$next" >> "$GITHUB_ENV"
 
-      - name: commit and push
+      - name: commit, tag and push
         if: steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add lobicons-core/ gradle.properties
           git commit -m "sync icons from lobe-icons ($version)"
+          git tag "$version"
           git push
+          git push origin "$version"
