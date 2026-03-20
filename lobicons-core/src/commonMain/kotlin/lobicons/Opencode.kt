@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
@@ -16,7 +18,7 @@ val Lobicons.Opencode: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M16 6H8v12h8V6zm4 16H4V2h16v20z")
             }
         }.build()

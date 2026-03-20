@@ -18,7 +18,7 @@ val Lobicons.ZeaburColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M9.325 15.022h14.672V22H0v-6.978h6.746l9.29-5.044H0V3h23.997v6.978z")
             }
             path(fill = SolidColor(Color(0xFF6300FF))) {

@@ -18,7 +18,7 @@ val Lobicons.CodeflickerColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M4.707 6.24V3.5H0v16.977h4.707v-2.74H2.94V6.24h1.766z")
             }
             path(fill = SolidColor(Color(0xFF32EDDA))) {

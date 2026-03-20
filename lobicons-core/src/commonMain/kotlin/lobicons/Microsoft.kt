@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
@@ -16,16 +18,16 @@ val Lobicons.Microsoft: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M11.49 2H2v9.492h9.492V2h-.002z")
             }
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M22 2h-9.492v9.492H22V2z")
             }
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M11.49 12.508H2V22h9.492v-9.492h-.002z")
             }
-            path {
+            path(fill = SolidColor(Color.Black)) {
                 pathData("M22 12.508h-9.492V22H22v-9.492z")
             }
         }.build()

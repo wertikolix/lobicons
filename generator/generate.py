@@ -41,8 +41,10 @@ def svg_name_to_kotlin(filename: str) -> tuple[str, str | None]:
 
 
 def parse_color(fill: str | None) -> str | None:
-    if not fill or fill == "none" or fill == "currentColor":
+    if not fill or fill == "none":
         return None
+    if fill == "currentColor":
+        return "Color.Black"
     if fill.startswith("#"):
         hex_val = fill[1:]
         if len(hex_val) == 3:
@@ -102,6 +104,8 @@ def parse_svg(svg_path: Path) -> dict | None:
             }
             gradients[gid] = {"type": "linear", "stops": stops, "coords": coords}
 
+    root_fill = root.get("fill")
+
     # collect paths
     paths = []
     for elem in root.iter():
@@ -110,7 +114,7 @@ def parse_svg(svg_path: Path) -> dict | None:
             d = elem.get("d", "")
             if not d:
                 continue
-            fill = elem.get("fill")
+            fill = elem.get("fill") or root_fill
             fill_rule = elem.get("fill-rule") or elem.get("clip-rule")
 
             # check if fill references a gradient
