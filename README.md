@@ -2,6 +2,8 @@
 
 Kotlin Multiplatform AI provider icons for Compose. 470+ icons from [lobe-icons](https://github.com/lobehub/lobe-icons).
 
+[![Maven Central](https://img.shields.io/maven-central/v/ru.wertik.lobicons/lobicons-core)](https://central.sonatype.com/artifact/ru.wertik.lobicons/lobicons-core)
+
 ## Setup
 
 ```kotlin
