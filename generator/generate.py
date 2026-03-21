@@ -98,11 +98,12 @@ def parse_svg(svg_path: Path) -> dict | None:
                 color = stop.get("stop-color", "#000000")
                 opacity = stop.get("stop-opacity", "1")
                 stops.append((offset, color, opacity))
+            gradient_units = lg.get("gradientUnits", "objectBoundingBox")
             coords = {
                 "x1": lg.get("x1", "0"), "y1": lg.get("y1", "0"),
                 "x2": lg.get("x2", "0"), "y2": lg.get("y2", "0"),
             }
-            gradients[gid] = {"type": "linear", "stops": stops, "coords": coords}
+            gradients[gid] = {"type": "linear", "stops": stops, "coords": coords, "units": gradient_units}
 
     root_fill = root.get("fill")
 
@@ -176,18 +177,12 @@ def parse_svg(svg_path: Path) -> dict | None:
     if not paths:
         return None
 
-    # for color icons with gradients, we skip gradient fills and just use the first
-    # non-gradient path's approach. gradient support in ImageVector is limited,
-    # so for gradient paths we use the first stop color as a flat fill.
-    has_gradient = any(p["gradient_ref"] for p in paths)
-
     return {
         "title": title,
         "vb_w": vb_w,
         "vb_h": vb_h,
         "paths": paths,
         "gradients": gradients,
-        "has_gradient": has_gradient,
     }
 
 
@@ -199,22 +194,95 @@ def gradient_first_color(gradients: dict, ref: str) -> str:
     return parse_color(color) or "Color.Black"
 
 
-def emit_path(p: dict, gradients: dict) -> list[str]:
+def parse_stop_color_with_opacity(color_str: str, opacity_str: str) -> str:
+    """Returns a Kotlin Color expression with alpha applied."""
+    opacity = float(opacity_str)
+    color = parse_color(color_str) or "Color.Black"
+
+    if opacity >= 1.0:
+        return color
+
+    if opacity <= 0.0:
+        # fully transparent version of the color
+        # e.g. Color(0xFF3186FF) -> Color(0x003186FF)
+        if "0xFF" in color:
+            return color.replace("0xFF", "0x00")
+        # for named colors, use .copy(alpha = 0f)
+        return f"{color}.copy(alpha = 0f)"
+
+    # partial opacity
+    alpha_hex = format(int(opacity * 255), "02X")
+    if "0xFF" in color:
+        return color.replace("0xFF", f"0x{alpha_hex}")
+    return f"{color}.copy(alpha = {opacity}f)"
+
+
+def parse_gradient_coord(val: str, viewport_size: float, is_percentage_mode: bool) -> float:
+    """Parse a gradient coordinate value, handling percentages."""
+    val = val.strip()
+    if val.endswith("%"):
+        pct = float(val[:-1]) / 100.0
+        if is_percentage_mode:
+            # objectBoundingBox: percentages map to viewport coords
+            return pct * viewport_size
+        return pct * viewport_size
+    return float(val)
+
+
+def emit_gradient_brush(gradients: dict, ref: str, vb_w: float, vb_h: float) -> str:
+    """Returns a Kotlin Brush.linearGradient expression."""
+    g = gradients[ref]
+    stops = g["stops"]
+    coords = g["coords"]
+    is_pct = g.get("units", "objectBoundingBox") == "objectBoundingBox"
+
+    x1 = parse_gradient_coord(coords["x1"], vb_w, is_pct)
+    y1 = parse_gradient_coord(coords["y1"], vb_h, is_pct)
+    x2 = parse_gradient_coord(coords["x2"], vb_w, is_pct)
+    y2 = parse_gradient_coord(coords["y2"], vb_h, is_pct)
+
+    # Build color stops
+    stop_parts = []
+    for offset_str, color_str, opacity_str in stops:
+        offset_str = offset_str.strip()
+        if offset_str.endswith("%"):
+            offset = float(offset_str[:-1]) / 100.0
+        else:
+            offset = float(offset_str)
+        color_expr = parse_stop_color_with_opacity(color_str, opacity_str)
+        stop_parts.append(f"{offset}f to {color_expr}")
+
+    stops_str = ", ".join(stop_parts)
+
+    return (
+        f"Brush.linearGradient(\n"
+        f"                    {stops_str},\n"
+        f"                    start = Offset({x1}f, {y1}f),\n"
+        f"                    end = Offset({x2}f, {y2}f),\n"
+        f"                )"
+    )
+
+
+def emit_path(p: dict, gradients: dict, vb_w: float = 24.0, vb_h: float = 24.0) -> list[str]:
     lines = []
 
-    fill_color = None
-    if p["gradient_ref"]:
-        fill_color = gradient_first_color(gradients, p["gradient_ref"])
+    fill_expr = None
+    is_gradient = False
+    if p["gradient_ref"] and p["gradient_ref"] in gradients:
+        fill_expr = emit_gradient_brush(gradients, p["gradient_ref"], vb_w, vb_h)
+        is_gradient = True
     elif p["fill"]:
         fill_color = parse_color(p["fill"])
+        if fill_color:
+            fill_expr = f"SolidColor({fill_color})"
 
     fill_rule = parse_fill_rule(p["fill_rule"])
 
-    has_builder_params = fill_color or fill_rule
+    has_builder_params = fill_expr or fill_rule
     if has_builder_params:
         params = []
-        if fill_color:
-            params.append(f"fill = SolidColor({fill_color})")
+        if fill_expr:
+            params.append(f"fill = {fill_expr}")
         if fill_rule:
             params.append(f"pathFillType = {fill_rule}")
         lines.append(f"path({', '.join(params)}) {{")
@@ -247,7 +315,7 @@ def generate_icon_code(prop_name: str, parsed: dict) -> str:
     lines.append(f"        ).apply {{")
 
     for p in parsed["paths"]:
-        for pl in emit_path(p, parsed["gradients"]):
+        for pl in emit_path(p, parsed["gradients"], parsed["vb_w"], parsed["vb_h"]):
             lines.append(f"            {pl}")
 
     lines.append(f"        }}.build()")
@@ -265,8 +333,12 @@ def write_icon_file(output_dir: Path, prop_name: str, variant: str | None, parse
 
     actual_prop = prop_name if not variant else f"{prop_name}{variant}"
 
-    has_color = any(
-        (p["fill"] and parse_color(p["fill"])) or p["gradient_ref"]
+    has_solid = any(
+        p["fill"] and parse_color(p["fill"]) and not p["gradient_ref"]
+        for p in parsed["paths"]
+    )
+    has_gradient = any(
+        p["gradient_ref"] and p["gradient_ref"] in parsed.get("gradients", {})
         for p in parsed["paths"]
     )
 
@@ -275,14 +347,18 @@ def write_icon_file(output_dir: Path, prop_name: str, variant: str | None, parse
         "androidx.compose.ui.graphics.vector.path",
         "androidx.compose.ui.unit.dp",
     ]
-    if has_color:
+    if has_solid or has_gradient:
         imports.append("androidx.compose.ui.graphics.Color")
+    if has_solid:
         imports.append("androidx.compose.ui.graphics.SolidColor")
+    if has_gradient:
+        imports.append("androidx.compose.ui.graphics.Brush")
+        imports.append("androidx.compose.ui.geometry.Offset")
 
     if any(parse_fill_rule(p["fill_rule"]) for p in parsed["paths"]):
         imports.append("androidx.compose.ui.graphics.PathFillType")
 
-    imports.sort()
+    imports = sorted(set(imports))
 
     code = generate_icon_code(actual_prop, parsed)
     # replace var name to be unique per file

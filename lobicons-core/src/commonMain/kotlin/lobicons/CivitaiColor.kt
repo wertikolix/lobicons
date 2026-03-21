@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.SolidColor
@@ -19,10 +21,18 @@ val Lobicons.CivitaiColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFF1281F4))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1281F4), 1.0f to Color(0xFF0821C6),
+                    start = Offset(12.0f, 0.0f),
+                    end = Offset(12.0f, 24.0f),
+                )) {
                 pathData("M12 0l10.392 6v12L12 24 1.608 18V6L12 0z")
             }
-            path(fill = SolidColor(Color(0xFF09138A))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF09138A), 1.0f to Color(0xFF150740),
+                    start = Offset(12.0f, 3.934f),
+                    end = Offset(12.0f, 20.066f),
+                )) {
                 pathData("M12 3.934l6.985 4.033v8.066L12 20.065l-6.985-4.032V7.967L12 3.934z")
             }
             path(fill = SolidColor(Color(0xFFFFFFFF)), pathFillType = PathFillType.EvenOdd) {

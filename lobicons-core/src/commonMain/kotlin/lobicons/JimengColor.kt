@@ -1,7 +1,8 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
@@ -18,28 +19,60 @@ val Lobicons.JimengColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFF27B2F0))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF27B2F0), 0.203234f to Color(0xFF26DFFB), 0.406468f to Color(0xFF30F5FE), 0.652506f to Color(0xFFF0FEFC), 0.863327f to Color(0xFFFBC610), 1.0f to Color(0xFFFD9C22),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L1077.71,0.0 L1077.71,666.506 L0.0,666.506Z")
             }
-            path(fill = SolidColor(Color(0xFF27B2F0))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF27B2F0), 0.203234f to Color(0xFF26DFFB), 0.406468f to Color(0xFF30F5FE), 0.652506f to Color(0xFFF0FEFC), 0.863327f to Color(0xFFFBC610), 1.0f to Color(0xFFFD9C22),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L1077.71,0.0 L1077.71,666.506 L0.0,666.506Z")
             }
-            path(fill = SolidColor(Color(0xFF27B2F0))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF27B2F0), 0.203234f to Color(0xFF26DFFB), 0.406468f to Color(0xFF30F5FE), 0.652506f to Color(0xFFF0FEFC), 0.863327f to Color(0xFFFBC610), 1.0f to Color(0xFFFD9C22),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L1077.71,0.0 L1077.71,666.506 L0.0,666.506Z")
             }
-            path(fill = SolidColor(Color(0xFF27B2F0))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF27B2F0), 0.203234f to Color(0xFF26DFFB), 0.406468f to Color(0xFF30F5FE), 0.652506f to Color(0xFFF0FEFC), 0.863327f to Color(0xFFFBC610), 1.0f to Color(0xFFFD9C22),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L1077.71,0.0 L1077.71,666.506 L0.0,666.506Z")
             }
-            path(fill = SolidColor(Color(0xFF1C6FFF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1C6FFF), 1.0f to Color(0xFF24B5EF),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L4828.03,0.0 L4828.03,1485.61 L0.0,1485.61Z")
             }
-            path(fill = SolidColor(Color(0xFF1C6FFF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1C6FFF), 1.0f to Color(0xFF24B5EF),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L4828.03,0.0 L4828.03,1485.61 L0.0,1485.61Z")
             }
-            path(fill = SolidColor(Color(0xFF1C6FFF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1C6FFF), 1.0f to Color(0xFF24B5EF),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L4828.03,0.0 L4828.03,1485.61 L0.0,1485.61Z")
             }
-            path(fill = SolidColor(Color(0xFF1C6FFF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1C6FFF), 1.0f to Color(0xFF24B5EF),
+                    start = Offset(0.0f, 0.0f),
+                    end = Offset(500.0f, 500.0f),
+                )) {
                 pathData("M0.0,0.0 L4828.03,0.0 L4828.03,1485.61 L0.0,1485.61Z")
             }
             path {

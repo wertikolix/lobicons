@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -18,13 +20,25 @@ val Lobicons.CopilotkitColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFF6430AB))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF6430AB), 1.0f to Color(0xFFAA89D8),
+                    start = Offset(17.852f, 1.467f),
+                    end = Offset(14.202f, 11.504f),
+                )) {
                 pathData("M8.162 7.758c2.093-2.738 3.831-5.445 4.498-7.63a.093.093 0 01.14-.051c2.324 1.539 6.558 2.552 10.301 2.576a.09.09 0 01.085.124c-1.243 3.158-2.765 8.817-2.823 15.28-.001.095-.135.13-.183.046-2.131-3.729-8.955-8.968-11.982-10.205a.09.09 0 01-.036-.14z")
             }
-            path(fill = SolidColor(Color(0xFF005DBB))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF005DBB), 1.0f to Color(0xFF3D92E8),
+                    start = Offset(15.024f, 7.125f),
+                    end = Offset(10.324f, 16.204f),
+                )) {
                 pathData("M15.223 6.083A61.492 61.492 0 018.25 7.827c-.045.008-.055.071-.012.089 3.05 1.267 9.84 6.492 11.952 10.206a.017.017 0 00.022.007.018.018 0 00.01-.024l-4.999-12.02z")
             }
-            path(fill = SolidColor(Color(0xFF1B70C4))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF1B70C4), 1.0f to Color(0xFF54A4F2),
+                    start = Offset(17.122f, 1.467f),
+                    end = Offset(15.707f, 5.892f),
+                )) {
                 pathData("M12.81.07c2.8 1.528 6.037 2.214 10.33 2.575.028.002.036.039.012.051-.55.282-3.695 1.883-6.03 2.74-.626.23-1.256.443-1.876.64a.028.028 0 01-.033-.016L12.746.128c-.017-.04.027-.078.065-.058z")
             }
             path(fill = SolidColor(Color(0xFF513C9F))) {
@@ -36,7 +50,11 @@ val Lobicons.CopilotkitColor: ImageVector
             path(fill = SolidColor(Color(0xFFABABAB))) {
                 pathData("M13.838 2.272a.16.16 0 01.107.2l-2.72 9.055h6.4l.061.013a.16.16 0 010 .295l-.061.013h-6.541L.679 24.099l-.05.04a.16.16 0 01-.194-.245l10.43-12.285 2.773-9.23a.16.16 0 01.2-.107z")
             }
-            path(fill = SolidColor(Color(0xFF4497EA))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF4497EA), 0.255f to Color(0xFF1463B2), 0.499f to Color(0xFF0A437D), 0.667f to Color(0xFF2476C8), 0.973f to Color(0xFF0C549A),
+                    start = Offset(6.577f, 21.758f),
+                    end = Offset(21.506f, 21.758f),
+                )) {
                 pathData("M7.809 21.461l-1.232.173c.638 1.69 1.949 2.427 3.514 2.427 3.831 0 2.661-4.334 4.883-4.334 1.61 0 .956 3.513 4.423 3.513 2.116 0 2.326-2.131 1.966-3.048l-.008-.016-.567-.868c-.037-.058-.127-.036-.133.032l-.106 1.053a1.01 1.01 0 00.003.219c.088.727.144 2.491-1.155 2.491-1.37 0-1.7-3.467-4.423-3.467-3.196 0-2.785 4.289-4.747 4.289-1.294 0-2.28-1.46-2.418-2.464z")
             }
         }.build()

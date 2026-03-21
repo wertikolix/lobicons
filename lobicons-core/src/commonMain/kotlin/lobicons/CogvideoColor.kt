@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -18,10 +20,18 @@ val Lobicons.CogvideoColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFF19D46A))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF19D46A), 1.0f to Color(0xFF0D00B5),
+                    start = Offset(2.173f, 3.299f),
+                    end = Offset(11.524f, 18.97f),
+                )) {
                 pathData("M14.538 22.388H9.406a.306.306 0 01-.268-.146L.056 2.335a.329.329 0 01.268-.512h5.132c.11 0 .207.049.268.146l9.082 19.895c.146.232-.012.524-.268.524z")
             }
-            path(fill = SolidColor(Color(0xFFD70066))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFD70066), 1.0f to Color(0xFF0D00B5),
+                    start = Offset(12.793f, 20.54f),
+                    end = Offset(19.332f, 5.839f),
+                )) {
                 pathData("M23.705 1.835H18.5a.281.281 0 00-.244.134L9.138 21.925a.298.298 0 00.243.463h5.206a.281.281 0 00.244-.134l9.118-19.956a.298.298 0 00-.244-.463z")
             }
             path(fill = SolidColor(Color(0xFF191935))) {
@@ -39,49 +49,109 @@ val Lobicons.CogvideoColor: ImageVector
             path(fill = SolidColor(Color(0xFF000000))) {
                 pathData("M18.817 16.89s.621-.366 1.121-.719c.5-.354 1.512-1.268 1.756-1.597.256-.33.292-.634.426-.56.232.146-.158.487-.317.645-.17.159-.743.72-1.182 1.085-.451.366-1.61 1.207-1.804 1.146z")
             }
-            path(fill = SolidColor(Color(0xFF8890F4))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF8890F4), 0.283f to Color(0xFFFFCFFD), 0.606f to Color(0xFFF4F0FE), 0.734f to Color(0xFFEFFFFF), 1.0f to Color(0xFF75D9DD),
+                    start = Offset(16.291f, 6.499f),
+                    end = Offset(17.794f, 17.251f),
+                )) {
                 pathData("M17.256 17.183c.013.049.05.085.05.024.109-1.06.535-2.316.548-5.412.012-3.28 0-4.779-2.39-5.388-.158-.037-.304 0-.28.158.061.366.89 2.17 1.304 4.535.5 2.913.67 5.595.768 6.083z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.415f to Color(0xFFFFCEAD), 0.596f to Color(0xFFEFEFB9), 0.673f to Color(0xFFE7FFBF), 1.0f to Color(0xFF75D9DD),
+                    start = Offset(6.141f, 14.567f),
+                    end = Offset(17.226f, 17.611f),
+                )) {
                 pathData("M6.907 15.72c-.817.232 1.146.634 3.023 1 1.28.256 5.315.877 6.68.95.025 0 .037-.036.012-.048-1.365-.89-4.388-2.829-5.254-2.829-1.56-.012-3.852.756-4.461.927z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.382f to Color(0xFFFFAFFF), 0.513f to Color(0xFFF5D1E4), 0.673f to Color(0xFFE7FFBF), 0.972f to Color(0xFF75D9DD),
+                    start = Offset(10.787f, 8.975f),
+                    end = Offset(18.484f, 18.179f),
+                )) {
                 pathData("M11.588 9.393s.646 1.353 1.658 2.195c.877.719 1.646 1.182 1.926 1.523.963 1.134 1.34 3.121 1.816 4.06.073.134-3.498-3.401-5.315-6.425-.414-.694-.195-1.536-.085-1.353z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(15.002f, 4.818f),
+                    end = Offset(14.323f, 3.993f),
+                )) {
                 pathData("M13.88 3.457c.378-.074 1.377.5 1.377.792 0 .134-1.438-.134-1.682-.256-.33-.17.06-.488.305-.536z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(14.063f, 5.228f),
+                    end = Offset(13.455f, 4.443f),
+                )) {
                 pathData("M13.221 4.505c.183-.159.951.012 1.098.146.146.159-.756.256-1.049.293-.256.024-.231-.28-.049-.44z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(16.294f, 4.635f),
+                    end = Offset(15.351f, 3.192f),
+                )) {
                 pathData("M14.99 2.14c.56.049 1.681 1.694 1.438 1.89-.134.097-1.878-.976-2.134-1.28-.22-.269.268-.647.695-.61z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(21.017f, 5.909f),
+                    end = Offset(20.742f, 5.173f),
+                )) {
                 pathData("M20.56 4.688c.28.036.841.658.78.878-.024.097-.975-.427-1.121-.573-.195-.208.158-.33.34-.305z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(20.281f, 6.032f),
+                    end = Offset(20.002f, 5.346f),
+                )) {
                 pathData("M19.853 5.334c.134-.085.683.22.695.366.012.122-.537-.013-.756-.05-.183-.024-.085-.219.06-.316z")
             }
-            path(fill = SolidColor(Color(0xFFFFA2FF))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFFA2FF), 0.557f to Color(0xFFFFFFB0), 0.713f to Color(0xFFDDFFCA), 1.0f to Color(0xFF97FFFF),
+                    start = Offset(21.792f, 5.765f),
+                    end = Offset(21.483f, 4.716f),
+                )) {
                 pathData("M21.486 4.017c.39.159.72 1.256.598 1.366-.134.121-1.11-.817-1.22-1.085-.097-.232.33-.39.622-.28z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.329f to Color(0xFFFFD9AD), 0.635f to Color(0xFFEAFABD), 0.673f to Color(0xFFE7FFBF), 1.0f to Color(0xFF75D9DD),
+                    start = Offset(16.535f, 11.909f),
+                    end = Offset(12.379f, 7.067f),
+                )) {
                 pathData("M16.074 13.27c-.122-.61-.317-3.133-.95-4.645-.464-1.097-1.72-3.133-1.976-2.438-.378 1.024-1.231 1.975-.938 2.73.292.757 1.28 1.793 2.023 2.439.72.634 1.853 1.975 1.84 1.914z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.33f to Color(0xFFFFECEC), 0.591f to Color(0xFFEDFACB), 0.673f to Color(0xFFE7FFBF), 0.972f to Color(0xFF75D9DD),
+                    start = Offset(16.238f, 18.125f),
+                    end = Offset(5.74f, 17.604f),
+                )) {
                 pathData("M9.26 17.256c-.963-.134-2.438-.439-3.353-.622-.573-.11.098 1.475.878 1.89.67.353 3.694.158 5.693-.037 1.658-.17 4.193-.61 3.328-.621a62.933 62.933 0 01-6.546-.61z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.33f to Color(0xFFFFECEC), 0.591f to Color(0xFFEDFACB), 0.673f to Color(0xFFE7FFBF), 0.972f to Color(0xFF75D9DD),
+                    start = Offset(6.495f, 19.842f),
+                    end = Offset(16.17f, 19.331f),
+                )) {
                 pathData("M16.025 18.268c.049-.025.11-.122.073-.098-.743.244-3.486 1-6.485 1.329-2.292.244-2.78.049-3.047.17-.317.135.56 1.33 2.523 1.22 2.243-.134 5.656-1.792 6.936-2.621z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.601f to Color(0xFFFFCEAD), 0.707f to Color(0xFFEFEFB9), 0.752f to Color(0xFFE7FFBF), 0.976f to Color(0xFF75D9DD),
+                    start = Offset(14.758f, 15.723f),
+                    end = Offset(6.674f, 13.663f),
+                )) {
                 pathData("M7.114 14.586c-.146 0-.146-.426.33-.634 0 0 .536-.682 1.608-.475.744.146 1.926.817 1.768.78-.56-.134-2.999.33-3.706.33z")
             }
-            path(fill = SolidColor(Color(0xFF8890F4))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF8890F4), 0.425f to Color(0xFFFFB8FD), 0.549f to Color(0xFFF4D9FE), 0.673f to Color(0xFFE7FFFF), 1.0f to Color(0xFF75D9DD),
+                    start = Offset(19.991f, 8.304f),
+                    end = Offset(18.135f, 17.695f),
+                )) {
                 pathData("M17.976 16.707c0-.048.475-.792 1.097-4.096.39-2.047.292-3.852.231-4.205-.036-.256.841.256.854 1.219.012.695-.147 3.474-1.402 5.973-.512 1.036-.78 1.17-.78 1.11z")
             }
-            path(fill = SolidColor(Color(0xFF6F69F4))) {
+            path(fill = Brush.linearGradient(
+                    0.005f to Color(0xFF6F69F4), 0.329f to Color(0xFFFFCEAD), 0.571f to Color(0xFFEFEFB9), 0.673f to Color(0xFFE7FFBF), 1.0f to Color(0xFF75D9DD),
+                    start = Offset(19.82f, 13.96f),
+                    end = Offset(21.593f, 7.421f),
+                )) {
                 pathData("M19.792 14.135c-.012.025-.061.013-.049-.012.256-.56.951-2.95 1.097-4.766.061-.707.061-1.28.147-1.463.085-.22.621-.83.743-.902.256-.146.134 1.353-.439 3.218-.341 1.158-1.048 3.133-1.499 3.925z")
             }
         }.build()

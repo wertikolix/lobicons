@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -24,22 +26,42 @@ val Lobicons.LobehubColor: ImageVector
             path(fill = SolidColor(Color(0xFF972021))) {
                 pathData("M159.75 242.51c-28.25 0-35.75 3.5-35.75 3.5s3.5 27 35.75 27 35.75-27 35.75-27-7.5-3.5-35.75-3.5z")
             }
-            path(fill = SolidColor(Color(0xFFEB791E))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFEB791E), 1.0f to Color(0xFFDB694E),
+                    start = Offset(48.999f, 148.517f),
+                    end = Offset(271.999f, 148.517f),
+                )) {
                 pathData("M271.999 148.517c0 6.351-49.92 11.5-111.5 11.5s-111.5-5.149-111.5-11.5c0-6.352 49.92-11.5 111.5-11.5s111.5 5.148 111.5 11.5z")
             }
-            path(fill = SolidColor(Color(0xFFFCC659))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFCC659), 0.183f to Color(0xFFFFE366), 0.404f to Color(0xFFFECA50), 0.702f to Color(0xFFFFE76C), 1.0f to Color(0xFFFCC553),
+                    start = Offset(135.5f, 147.5f),
+                    end = Offset(187.0f, 147.5f),
+                )) {
                 pathData("M135.503 160.013c.633-14.972-.483-22.788-5.5-36.443 0 0 9.5-12.056 27-12.056s30 3.064 30 3.064c-3.028 16.793-3.182 26.921-2.5 45.435h-49z")
             }
             path(fill = SolidColor(Color(0xFFFFFFFF))) {
                 pathData("M119.191 234.294c14.742-7.076 24.811-21.51 24.811-39.273 0-25.406-20.595-48-46-48s-47 19.594-47 45c0 13.983 6.542 26.812 16.662 35.521 5.893-2.245 12.652-3.521 19.838-3.521 12.705 0 24.077 3.989 31.689 10.273zM200.813 234.294c-14.742-7.076-24.811-21.51-24.811-39.273 0-25.406 20.595-48 46-48s47 19.594 47 45c0 13.983-6.543 26.812-16.662 35.521-5.893-2.245-12.652-3.521-19.838-3.521-12.705 0-24.077 3.989-31.689 10.273z")
             }
-            path(fill = SolidColor(Color(0xFF2A0B39))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF2A0B39), 0.322f to Color(0xFF42180E), 0.678f to Color(0xFF483A00), 1.0f to Color(0xFF310D1D),
+                    start = Offset(73.0f, 193.012f),
+                    end = Offset(247.0f, 193.012f),
+                )) {
                 pathData("M101 221.012c15.464 0 28-12.536 28-28s-12.536-28-28-28-28 12.536-28 28 12.536 28 28 28z")
             }
-            path(fill = SolidColor(Color(0xFF2A0B39))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF2A0B39), 0.322f to Color(0xFF42180E), 0.678f to Color(0xFF483A00), 1.0f to Color(0xFF310D1D),
+                    start = Offset(73.0f, 193.012f),
+                    end = Offset(247.0f, 193.012f),
+                )) {
                 pathData("M219 221.012c-15.464 0-28-12.536-28-28s12.536-28 28-28 28 12.536 28 28-12.536 28-28 28z")
             }
-            path(fill = SolidColor(Color(0xFF342FBD))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF342FBD), 0.188f to Color(0xFF733CC0), 0.375f to Color(0xFF8748C2), 0.654f to Color(0xFF7C80DE), 1.0f to Color(0xFF4A306D),
+                    start = Offset(44.5f, 84.0f),
+                    end = Offset(291.0f, 82.0f),
+                )) {
                 pathData("M172.997 19.016c-14.027 0-19.5-11.5-41-11-23.394 0-34 13-45.5 23-1.958 1.702-11.5 7-16 9-19.683 8.748-34.5 21.5-34.5 40.5 0 20.711 17.461 37.5 39 37.5 3.536 0 6.963-.453 10.22-1.301 8.7 10.539 22.179 16.658 37.28 17.301 23.5 1 31-15.25 44.5-8.5 9.259 4.629 13.83 8.5 28.5 8.5 17.108 0 25.057-5.233 30-11 9-10.5 22.879-4 31.5-4 18.778 0 34-14.551 34-32.5 0-17.95-15.222-32.5-34-32.5-5.15 0-14.856 1.27-17-7-3.5-13.5-20.148-29-44-29-9.318 0-17.691 1-23 1z")
             }
             path(fill = SolidColor(Color.Black)) {

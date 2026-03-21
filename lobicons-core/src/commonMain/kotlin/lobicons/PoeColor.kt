@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -24,10 +26,18 @@ val Lobicons.PoeColor: ImageVector
             path(fill = SolidColor(Color.Black)) {
                 pathData("M7.413 7.57A1.422 1.422 0 005.99 8.99v1.422a1.422 1.422 0 102.844 0V8.99c0-.784-.636-1.422-1.422-1.422zm6.297 0a1.422 1.422 0 00-1.422 1.421v1.422a1.422 1.422 0 102.844 0V8.99c0-.784-.636-1.422-1.422-1.422z")
             }
-            path(fill = SolidColor(Color(0xFF46A6F7))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFF46A6F7), 1.0f to Color(0xFF8364FF),
+                    start = Offset(34.01f, 7.303f),
+                    end = Offset(1.086f, 27.715f),
+                )) {
                 pathData("M7.292 22.643l1.993-2.492h9.844a1.413 1.413 0 001.4-1.434 2.025 2.025 0 012.017-2.027h.01A1.409 1.409 0 0024 15.27v-3.594c0-.344-.113-.68-.324-.951l-.397-.519v4.127a1.415 1.415 0 01-1.444 1.42h-.007a2.026 2.026 0 00-2.018 2.025 1.415 1.415 0 01-1.402 1.436H8.565l-2.169 2.712a.574.574 0 00.896.715v.002z")
             }
-            path(fill = SolidColor(Color(0xFFFF44D3))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFF44D3), 1.0f to Color(0xFFCF4BFF),
+                    start = Offset(4.915f, 23.511f),
+                    end = Offset(24.34f, 9.464f),
+                )) {
                 pathData("M5.004 19.992l2.12-2.65h9.844a1.414 1.414 0 001.402-1.437c0-1.116.9-2.021 2.014-2.025h.012a1.413 1.413 0 001.443-1.422v-4.13l.52.68c.21.273.324.607.324.95v3.594a1.416 1.416 0 01-1.443 1.42h-.01a2.026 2.026 0 00-2.016 2.026 1.414 1.414 0 01-1.402 1.435H7.97l-1.916 2.4a.671.671 0 01-1.049-.839v-.002z")
             }
         }.build()

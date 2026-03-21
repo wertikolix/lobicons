@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -18,7 +20,11 @@ val Lobicons.MonicaColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFFA83FE0))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFA83FE0), 0.477f to Color(0xFF515FFB), 1.0f to Color(0xFF2BB5DD),
+                    start = Offset(0.0f, 12.281f),
+                    end = Offset(24.0f, 12.281f),
+                )) {
                 pathData("M0.0,12.0 A12.0,12.0,0,1,1,24.0,12.0 A12.0,12.0,0,1,1,0.0,12.0Z")
             }
             path(fill = SolidColor(Color(0xFF1E1E1E))) {

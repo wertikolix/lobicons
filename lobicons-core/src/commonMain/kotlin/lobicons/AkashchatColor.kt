@@ -1,5 +1,7 @@
 package lobicons
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -18,7 +20,11 @@ val Lobicons.AkashchatColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color(0xFFFF414C))) {
+            path(fill = Brush.linearGradient(
+                    0.0f to Color(0xFFFF414C), 1.0f to Color(0x00FF414C),
+                    start = Offset(13.877f, 19.997f),
+                    end = Offset(18.518f, 14.799f),
+                )) {
                 pathData("M15.902 14.836l3.93 6.914h-7.934L7.93 14.836h7.972z")
             }
             path(fill = SolidColor(Color(0xFFFF414C))) {
