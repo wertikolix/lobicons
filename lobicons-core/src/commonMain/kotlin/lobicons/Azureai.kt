@@ -22,7 +22,7 @@ val Lobicons.Azureai: ImageVector
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M16.233 0c.713 0 1.345.551 1.572 1.329.227.778 1.555 5.59 1.555 5.59v9.562h-4.813L14.645 0h1.588z")
             }
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M23.298 7.47c0-.34-.275-.6-.6-.6h-2.835a3.617 3.617 0 00-3.614 3.615v5.996h3.436a3.617 3.617 0 003.613-3.614V7.47z")
             }
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {

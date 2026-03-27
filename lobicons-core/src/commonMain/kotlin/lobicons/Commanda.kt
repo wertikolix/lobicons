@@ -25,7 +25,7 @@ val Lobicons.Commanda: ImageVector
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M9.912 18.61a4.387 4.387 0 012.705-4.052l3.323-1.38c3.361-1.394 7.06 1.076 7.06 4.715a5.104 5.104 0 01-5.105 5.104l-3.597-.001a4.386 4.386 0 01-4.386-4.387z")
             }
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M4.776 14.962A3.775 3.775 0 001 18.738v.489a3.776 3.776 0 007.551 0v-.49a3.775 3.775 0 00-3.775-3.775z")
             }
         }.build()

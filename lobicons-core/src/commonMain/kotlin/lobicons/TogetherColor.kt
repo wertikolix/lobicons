@@ -18,11 +18,14 @@ val Lobicons.TogetherColor: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color.Black)) {
-                pathData("M17.385 11.23a4.615 4.615 0 100-9.23 4.615 4.615 0 000 9.23zm0 10.77a4.615 4.615 0 100-9.23 4.615 4.615 0 000 9.23zm-10.77 0a4.615 4.615 0 100-9.23 4.615 4.615 0 000 9.23z")
+            path(fill = SolidColor(Color(0xFFEF2CC1))) {
+                pathData("M23.197 4.503A6 6 0 0015 2.307a5.973 5.973 0 00-2.995 4.933l5.996.008v.515h-5.996c.039.937.298 1.87.8 2.74a6 6 0 1010.39-6z")
             }
-            path(fill = SolidColor(Color(0xFF0F6FFF))) {
-                pathData("M2.0,6.615 A4.615,4.615,0,1,1,11.23,6.615 A4.615,4.615,0,1,1,2.0,6.615Z")
+            path(fill = SolidColor(Color(0xFFCAAEF5))) {
+                pathData("M.805 4.5A6 6 0 003 12.697a5.972 5.972 0 005.77.127L5.779 7.627l.446-.257 2.997 5.192A6 6 0 10.804 4.5z")
+            }
+            path(fill = SolidColor(Color(0xFFFC4C02))) {
+                pathData("M12 23.894a6 6 0 005.999-6c0-2.13-1.1-3.996-2.775-5.06l-3.005 5.189-.444-.258 2.997-5.192A6 6 0 1012 23.894z")
             }
         }.build()
         return _togethercolor!!

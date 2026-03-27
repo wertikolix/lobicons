@@ -106,6 +106,7 @@ def parse_svg(svg_path: Path) -> dict | None:
             gradients[gid] = {"type": "linear", "stops": stops, "coords": coords, "units": gradient_units}
 
     root_fill = root.get("fill")
+    root_fill_rule = root.get("fill-rule")
 
     # collect paths
     paths = []
@@ -116,7 +117,7 @@ def parse_svg(svg_path: Path) -> dict | None:
             if not d:
                 continue
             fill = elem.get("fill") or root_fill
-            fill_rule = elem.get("fill-rule") or elem.get("clip-rule")
+            fill_rule = elem.get("fill-rule") or elem.get("clip-rule") or root_fill_rule
 
             # check if fill references a gradient
             gradient_ref = None
@@ -136,7 +137,8 @@ def parse_svg(svg_path: Path) -> dict | None:
             cx = float(elem.get("cx", "0"))
             cy = float(elem.get("cy", "0"))
             r = float(elem.get("r", "0"))
-            fill = elem.get("fill")
+            fill = elem.get("fill") or root_fill
+            fill_rule = elem.get("fill-rule") or elem.get("clip-rule") or root_fill_rule
             gradient_ref = None
             if fill and fill.startswith("url(#"):
                 gid = fill[5:-1]
@@ -147,7 +149,7 @@ def parse_svg(svg_path: Path) -> dict | None:
             d = (f"M{cx-r},{cy} "
                  f"A{r},{r},0,1,1,{cx+r},{cy} "
                  f"A{r},{r},0,1,1,{cx-r},{cy}Z")
-            paths.append({"d": d, "fill": fill, "fill_rule": None, "gradient_ref": gradient_ref})
+            paths.append({"d": d, "fill": fill, "fill_rule": fill_rule, "gradient_ref": gradient_ref})
         elif etag == "rect":
             x = float(elem.get("x", "0"))
             y = float(elem.get("y", "0"))
@@ -155,7 +157,8 @@ def parse_svg(svg_path: Path) -> dict | None:
             h = float(elem.get("height", "0"))
             rx = float(elem.get("rx", "0"))
             ry = float(elem.get("ry", "0"))
-            fill = elem.get("fill")
+            fill = elem.get("fill") or root_fill
+            fill_rule = elem.get("fill-rule") or elem.get("clip-rule") or root_fill_rule
             gradient_ref = None
             if fill and fill.startswith("url(#"):
                 gid = fill[5:-1]
@@ -172,7 +175,7 @@ def parse_svg(svg_path: Path) -> dict | None:
                      f"A{r},{r},0,0,1,{x+r},{y}Z")
             else:
                 d = f"M{x},{y} L{x+w},{y} L{x+w},{y+h} L{x},{y+h}Z"
-            paths.append({"d": d, "fill": fill, "fill_rule": None, "gradient_ref": gradient_ref})
+            paths.append({"d": d, "fill": fill, "fill_rule": fill_rule, "gradient_ref": gradient_ref})
 
     if not paths:
         return None

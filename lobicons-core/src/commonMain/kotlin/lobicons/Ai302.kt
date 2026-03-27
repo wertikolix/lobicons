@@ -19,13 +19,13 @@ val Lobicons.Ai302: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M19.04 4.818a10.171 10.171 0 014.21 8.25c0 5.623-4.55 10.182-10.163 10.182a10.142 10.142 0 01-8.129-4.07 10.102 10.102 0 005.956 1.934c5.613 0 10.163-4.56 10.163-10.182 0-2.295-.759-4.411-2.037-6.114z")
             }
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M10.887 5.2c1.156 0 2.097.944 2.097 2.1 0 .354-.09.7-.258 1.006a.591.591 0 00.233.797c.215.117.47.084.647-.062.375-.232.811-.338 1.251-.305a2.098 2.098 0 011.931 2.248 2.097 2.097 0 01-2.244 1.939 2.082 2.082 0 01-1.246-.533c-.019-.024-.036-.047-.056-.07a.617.617 0 00-.111-.102 2.113 2.113 0 01-.137-.173.58.58 0 10-.947.675c.118.167.247.323.39.462.22.291.36.637.405 1.005a2.08 2.08 0 01-.425 1.546 2.088 2.088 0 01-1.398.792 2.094 2.094 0 01-2.335-1.827 2.083 2.083 0 01.263-1.304v.005a3.273 3.273 0 001.216-2.546c0-.92-.383-1.745-.993-2.34l-.03-.055A2.101 2.101 0 0110.887 5.2z")
             }
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M6.901 8.752a2.1 2.1 0 010 4.201 2.097 2.097 0 01-2.091-2.1c0-1.159.937-2.101 2.091-2.101z")
             }
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {

@@ -19,7 +19,7 @@ val Lobicons.Mastra: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M14.74 9.977l-1.584 1.583h3.563v.942h-3.563l1.583 1.583-.666.666-2.053-2.054-2.054 2.054-.666-.666 1.583-1.583H7.32v-.942h3.562L9.299 9.977l.666-.666 2.055 2.054 2.054-2.054.666.666z")
             }
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {

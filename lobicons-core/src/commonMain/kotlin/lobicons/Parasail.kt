@@ -19,7 +19,7 @@ val Lobicons.Parasail: ImageVector
             viewportWidth = 24.0f,
             viewportHeight = 24.0f,
         ).apply {
-            path(fill = SolidColor(Color.Black)) {
+            path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
                 pathData("M0 15.852c4.5 0 8.147 3.648 8.147 8.148H0v-8.148z")
             }
             path(fill = SolidColor(Color.Black), pathFillType = PathFillType.EvenOdd) {
