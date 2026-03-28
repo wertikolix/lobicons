@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
 
+import io
 import re
-import shutil
 import sys
 from pathlib import Path
+
+import cairosvg
+from PIL import Image
 
 PACKAGE = "lobicons"
 OUTPUT_KT = "lobicons-core/src/commonMain/kotlin/lobicons"
 OUTPUT_RES = "lobicons-core/src/commonMain/composeResources/drawable"
+RENDER_SIZE = 256
 
 
-def svg_name_to_kotlin(filename: str) -> tuple[str, str | None]:
+def svg_name_to_kotlin(filename):
     name = filename.removesuffix(".svg")
-
     variant = None
     if name.endswith("-color"):
         variant = "Color"
@@ -20,25 +23,21 @@ def svg_name_to_kotlin(filename: str) -> tuple[str, str | None]:
     elif name.endswith("-text"):
         variant = "Text"
         name = name.removesuffix("-text")
-
     parts = name.split("-")
     prop = "".join(p.capitalize() for p in parts)
     return prop, variant
 
 
-def resource_name(filename: str) -> str:
-    # compose resources need lowercase snake_case, no hyphens
+def resource_name(filename):
     name = filename.removesuffix(".svg")
-    name = name.replace("-", "_")
-    # prefix with ic_ to avoid conflicts
-    return f"ic_{name}"
+    return f"ic_{name.replace('-', '_')}"
 
 
-def generate_accessor(prop_name: str, res_name: str) -> str:
-    return (
-        f"val Lobicons.{prop_name}: DrawableResource\n"
-        f"    get() = Res.drawable.{res_name}\n"
-    )
+def svg_to_webp(svg_path, out_path, size=RENDER_SIZE):
+    svg_data = svg_path.read_bytes()
+    png_data = cairosvg.svg2png(bytestring=svg_data, output_width=size, output_height=size)
+    img = Image.open(io.BytesIO(png_data))
+    img.save(out_path, "WEBP", lossless=True)
 
 
 def main():
@@ -59,20 +58,13 @@ def main():
     kt_dir.mkdir(parents=True, exist_ok=True)
     res_dir.mkdir(parents=True, exist_ok=True)
 
-    # clean old files
     for f in kt_dir.glob("*.kt"):
-        if f.name not in ("Lobicons.kt",):
+        if f.name != "Lobicons.kt":
             f.unlink()
-    for f in res_dir.glob("ic_*.svg"):
+    for f in res_dir.glob("ic_*"):
         f.unlink()
 
-    # write Lobicons object
     (kt_dir / "Lobicons.kt").write_text(f"package {PACKAGE}\n\nobject Lobicons\n")
-
-    # can also delete PathData.kt since we no longer need it
-    pathdata = kt_dir / "PathData.kt"
-    if pathdata.exists():
-        pathdata.unlink()
 
     svg_files = sorted(svg_dir.glob("*.svg"))
     print(f"found {len(svg_files)} svg files")
@@ -80,6 +72,7 @@ def main():
     accessors = []
     generated = 0
     skipped = 0
+    errors = 0
 
     for svg_file in svg_files:
         name = svg_file.name
@@ -91,14 +84,19 @@ def main():
         actual_prop = prop_name if not variant else f"{prop_name}{variant}"
         res = resource_name(name)
 
-        # copy svg to resources
-        shutil.copy2(svg_file, res_dir / f"{res}.svg")
+        try:
+            svg_to_webp(svg_file, res_dir / f"{res}.webp")
+        except Exception as e:
+            print(f"  error ({name}): {e}", file=sys.stderr)
+            errors += 1
+            continue
 
-        # collect accessor
-        accessors.append(generate_accessor(actual_prop, res))
+        accessors.append(
+            f"val Lobicons.{actual_prop}: DrawableResource\n"
+            f"    get() = Res.drawable.{res}\n"
+        )
         generated += 1
 
-    # write single accessors file
     lines = [
         f"package {PACKAGE}",
         "",
@@ -108,10 +106,9 @@ def main():
         "",
     ]
     lines.extend(accessors)
-
     (kt_dir / "LobiconsAccessors.kt").write_text("\n".join(lines))
 
-    print(f"generated {generated} icons, skipped {skipped}")
+    print(f"generated {generated}, skipped {skipped}, errors {errors}")
 
 
 if __name__ == "__main__":
