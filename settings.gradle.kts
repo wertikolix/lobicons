@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "lobicons"
 include(":lobicons-core")
+include(":preview")

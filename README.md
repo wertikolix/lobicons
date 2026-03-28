@@ -1,6 +1,6 @@
 # Lobicons
 
-Kotlin Multiplatform AI provider icons for Compose. 470+ icons from [lobe-icons](https://github.com/lobehub/lobe-icons).
+Kotlin Multiplatform AI provider icons for Compose. 490+ icons from [lobe-icons](https://github.com/lobehub/lobe-icons).
 
 [![Maven Central](https://img.shields.io/maven-central/v/ru.wertik.lobicons/lobicons-core)](https://central.sonatype.com/artifact/ru.wertik.lobicons/lobicons-core)
 
@@ -9,7 +9,7 @@ Kotlin Multiplatform AI provider icons for Compose. 470+ icons from [lobe-icons]
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("ru.wertik.lobicons:lobicons-core:0.1.0")
+    implementation("ru.wertik.lobicons:lobicons-core:0.2.0")
 }
 ```
 
@@ -17,26 +17,29 @@ dependencies {
 
 ```kotlin
 import lobicons.Lobicons
-import lobicons.Openai
-import lobicons.ClaudeColor
+import lobicons.*
+import org.jetbrains.compose.resources.painterResource
 
-Icon(
-    imageVector = Lobicons.Openai,
+// mono icon — tint with any color
+Image(
+    painter = painterResource(Lobicons.Openai),
     contentDescription = "OpenAI",
+    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
 )
 
-// color variant
-Icon(
-    imageVector = Lobicons.ClaudeColor,
+// color icon — as is
+Image(
+    painter = painterResource(Lobicons.ClaudeColor),
     contentDescription = "Claude",
-    tint = Color.Unspecified,
 )
 ```
 
 ## Variants
 
-- `Lobicons.Openai` — mono (tintable)
-- `Lobicons.OpenaiColor` — color (use `tint = Color.Unspecified`)
+- `Lobicons.Openai` — mono (use `ColorFilter.tint()` to set color)
+- `Lobicons.OpenaiColor` — full color
+
+Each icon returns a `DrawableResource` — render with `painterResource()`.
 
 ## Targets
 
@@ -51,6 +54,17 @@ Icon(
 git clone https://github.com/lobehub/lobe-icons /tmp/lobe-icons
 python3 generator/generate.py /tmp/lobe-icons
 ```
+
+## Migration from 0.1.x
+
+0.2.0 switched from `ImageVector` to native SVG resources.
+
+```diff
+- Icon(imageVector = Lobicons.Openai, ...)
++ Image(painter = painterResource(Lobicons.Openai), ...)
+```
+
+`compose.components.resources` is now a transitive dependency.
 
 ## License
 
