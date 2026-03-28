@@ -11,7 +11,7 @@ from PIL import Image
 PACKAGE = "lobicons"
 OUTPUT_KT = "lobicons-core/src/commonMain/kotlin/lobicons"
 OUTPUT_RES = "lobicons-core/src/commonMain/composeResources/drawable"
-RENDER_SIZE = 256
+RENDER_SIZE = 128
 
 
 def svg_name_to_kotlin(filename):
